@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Birthday Surprise</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Audio tag (will start on first user interaction) -->
+  <audio id="bgMusic" loop>
+    <source src="images/music.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <div id="slide1" class="slide active slide1-bg">
+    <div class="content-center">
+      <h1 class="happy-birthday">Happy Birthday!</h1>
+      <div class="twinkling-stars"></div>
+    </div>
+  </div>
+
+  <div id="slide2" class="slide slide2-bg">
+    <div class="content-center photo-message-container">
+      <div class="photo-wrap">
+        <img src="images/userphoto.jpg" alt="Birthday Person Photo" />
+      </div>
+
+      <div class="birthday-text">
+        <p>
+          Some people come into our lives and quietly stay in our hearts — you are one of them. Teri muskurahat mere liye sukoon hai, aur tera hona ek khushi jo har roz mehsoos hoti hai.
+          Zindagi me har achhe pal me tu yaad aati hai, aur har mushkil waqt me tera khayal himmat deta hai.
+          I’m lucky to have you in my life — not just as a friend, but as someone who makes everything better just by being there.
+          Tera saath ek ehsaas hai... jo har din mere dil ke kareeb hai, bina kisi shor ke.
+          Wishing you all the happiness, peace, and love this world can offer — because you truly deserve it. Keep shining, always ✨
+          With warmth and prayers,<br/>
+          ✨Kanha✨
+        </p>
+        <button id="giftBtn" class="gift-button">🎁 Gift</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide3" class="slide slide3-bg">
+    <div class="content-center launch-container">
+      <h2>Aapke liye gift hai!</h2>
+      <button id="launchBtn" class="launch-button">🎉 Launch Website 🎉</button>
+    </div>
+  </div>
+
+  <!-- confetti container -->
+  <div id="confetti-wrap" aria-hidden="true"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

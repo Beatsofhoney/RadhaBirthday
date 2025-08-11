@@ -1,0 +1,205 @@
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Slides common */
+.slide {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0; left: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide.active { display: flex; animation: fadeIn 700ms ease both; }
+
+.content-center {
+  background-color: rgba(0,0,0,0.45);
+  padding: 22px;
+  border-radius: 14px;
+  max-width: 92vw;
+}
+
+/* Slide 1 */
+.slide1-bg { background-image: url('../images/background1.jpg'); position: relative; overflow: hidden; }
+.happy-birthday {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  color: #fff;
+  text-shadow: 0 0 8px #fff, 0 0 16px #ff69b4, 0 0 36px #ff1493;
+  animation: pulseGlow 3s infinite;
+  user-select: none;
+}
+
+/* stars */
+.twinkling-stars {
+  position: absolute; inset: 0;
+  background: transparent;
+  pointer-events: none;
+  z-index: 5;
+  animation: twinkle 3.5s linear infinite;
+}
+
+/* Slide 2 */
+.slide2-bg { background-image: url('../images/background2.jpg'); }
+
+.photo-message-container {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* photo wrapper to control reveal without cropping */
+.photo-wrap {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,215,0,0.12), rgba(255,215,0,0.06));
+  box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+  transform-origin: center;
+  animation: photoReveal 900ms ease forwards;
+}
+
+/* image: never cropped, keeps aspect */
+.photo-wrap img {
+  display: block;
+  width: clamp(180px, 36vw, 320px); /* responsive */
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: contain; /* no crop */
+  border-radius: 10px;
+  border: 4px solid gold;
+  box-shadow: 0 0 18px 4px rgba(255,215,0,0.25);
+  transition: transform 350ms ease;
+  animation: floatPhoto 4s ease-in-out infinite;
+}
+
+/* text */
+.birthday-text {
+  flex: 1 1 420px;
+  color: white;
+  font-size: clamp(0.95rem, 1.9vw, 1.15rem);
+  line-height: 1.55;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 18px;
+  background: rgba(0,0,0,0.38);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+  transform: translateX(30px);
+  opacity: 0;
+  animation: textSlideIn 700ms ease forwards 400ms;
+}
+
+/* button */
+.gift-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  background: linear-gradient(45deg,#ff8a00,#ffd200);
+  color: #111;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(255,140,0,0.25), inset 0 -2px 0 rgba(0,0,0,0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+  animation: giftPulse 2.6s infinite;
+}
+.gift-button:hover { transform: scale(1.06); box-shadow: 0 14px 30px rgba(255,140,0,0.32); }
+
+/* Slide 3 */
+.slide3-bg { background-image: url('../images/background3.jpg'); }
+.launch-container h2 {
+  font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+  margin-bottom: 22px;
+  color: #ffecb3;
+  text-shadow: 0 0 10px #ffd54f;
+  animation: zoomText 700ms ease both;
+}
+.launch-button {
+  padding: 14px 34px;
+  font-size: 1.1rem;
+  background: linear-gradient(45deg,#ff416c,#ff8aa2);
+  color: #fff; border: none; border-radius: 28px;
+  cursor: pointer; overflow: hidden; position: relative;
+  box-shadow: 0 12px 30px rgba(255,65,108,0.18);
+}
+.launch-button::before {
+  content: '';
+  position: absolute; top:-40%; left:-40%; width:200%; height:200%;
+  background: linear-gradient(45deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.06) 60%, rgba(255,255,255,0.35) 100%);
+  transform: rotate(25deg); animation: shine 3s linear infinite;
+  pointer-events: none;
+}
+
+/* confetti */
+#confetti-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
+
+/* Animations */
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes pulseGlow {
+  0%{text-shadow:0 0 6px #fff,0 0 18px #ff1493;}
+  50%{text-shadow:0 0 20px #ff69b4,0 0 40px #ff1493;}
+  100%{text-shadow:0 0 6px #fff,0 0 18px #ff1493;}
+}
+@keyframes twinkle { 0%,100%{opacity:.75} 50%{opacity:1} }
+
+@keyframes photoReveal {
+  0% { transform: scale(0.86) rotate(-1deg); opacity: 0; }
+  60% { transform: scale(1.02) rotate(0.5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+@keyframes floatPhoto {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes textSlideIn { to { transform: translateX(0); opacity: 1; } }
+@keyframes giftPulse {
+  0%,100% { box-shadow: 0 8px 18px rgba(255,140,0,0.25); transform: translateY(0); }
+  50% { box-shadow: 0 20px 40px rgba(255,140,0,0.32); transform: translateY(-6px) scale(1.02); }
+}
+@keyframes zoomText { from{transform:scale(.9);opacity:0} to{transform:none;opacity:1} }
+@keyframes shine { 0%{transform:translateX(-100%) rotate(25deg)} 100%{transform:translateX(100%) rotate(25deg)} }
+
+/* Responsive: mobile stacked and readable */
+@media (max-width: 720px) {
+  .photo-message-container { flex-direction: column; gap:18px; }
+  .photo-wrap { padding: 4px; border-radius: 12px; }
+  .photo-wrap img { width: 72vw; max-width: none; height: auto; aspect-ratio: 4/5; }
+  .birthday-text { opacity: 1; transform: none; padding:14px; max-height: none; font-size: 1rem; text-align: center; }
+  .content-center { padding: 14px; border-radius: 12px; }
+  .happy-birthday { font-size: 2.2rem; }
+  .launch-container h2 { font-size: 1.6rem; }
+  .gift-button{ font-size:1rem; padding:10px 20px; }
+}
+
+/* accessibility */
+.birthday-text::-webkit-scrollbar { width: 8px; }
+.birthday-text::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 8px; }
+
+/* desktop fallback small tweak */
+@media (min-width: 1400px) {
+  .photo-wrap img { width: 360px; }
+}
